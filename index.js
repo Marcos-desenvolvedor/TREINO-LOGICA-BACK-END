@@ -1,3 +1,6 @@
+import PromptSync from "prompt-sync";
+
+const prompt = PromptSync();
 // TREINO LOGICA BACK-END
 
 console.log("EXERCICIO 1");
@@ -168,3 +171,136 @@ function atualizarDados(userAtual, dadosAtualizar) {
 }
 
 console.log(atualizarDados(usuarioAtual, dadosNovos));
+
+console.log("EXERCICO 8");
+
+const produtos = [
+  { nome: "Teclado", estoque: 5 },
+  { nome: "Mouse", estoque: 0 },
+  { nome: "Monitor", estoque: 2 },
+];
+
+// Crie uma função que:
+
+// receba o nome do produto
+
+// verifique se existe
+
+// se tiver estoque → diminui 1
+
+// se não tiver → retorna erro
+
+function verificaProduto(nome) {
+  const produtoExiste = produtos.find((p) => p.nome === nome);
+
+  if (produtoExiste) {
+    if (produtoExiste.estoque > 0) {
+      produtoExiste.estoque = produtoExiste.estoque - 1;
+      return {
+        sucesso: true,
+        mesagem: "Estoque atualizado",
+      };
+    } else {
+      return {
+        sucesso: false,
+        mesagem: "Sem estoque",
+      };
+    }
+  } else {
+    return {
+      sucesso: false,
+      mesagem: "Não existe",
+    };
+  }
+}
+
+console.log(verificaProduto("Teclado").mesagem);
+console.log(produtos);
+
+console.log("EXERCICO 9");
+
+const usuario = {
+  nome: "Carlos",
+  email: "",
+  senha: "123",
+};
+
+// Regras:
+
+// nome obrigatório
+
+// email obrigatório
+
+// senha mínimo 6 caracteres
+
+// Retornar:
+
+function verificaUser() {
+  if (!usuario.nome) {
+    return { sucesso: false, mensagem: "Nome inválido" };
+  }
+
+  if (!usuario.email) {
+    return { sucesso: false, mensagem: "Email inválido" };
+  }
+
+  if (usuario.senha.length < 6) {
+    return { sucesso: false, mensagem: "Senha inválida" };
+  }
+
+  return { sucesso: true, mensagem: "Logado" };
+}
+
+console.log(verificaUser().mensagem);
+
+console.log("EXERCICIO 10");
+
+const pedidosUsuarios = [
+  { usuario: "Ana", valor: 100 },
+  { usuario: "Carlos", valor: 50 },
+  { usuario: "Ana", valor: 300 },
+];
+
+const resultado = pedidosUsuarios.reduce((acc, p) => {
+  if (!acc[p.usuario]) {
+    acc[p.usuario] = 0;
+  }
+
+  acc[p.usuario] += p.valor;
+
+  return acc;
+}, {});
+
+console.log(resultado);
+
+console.log("EXERCICO 11");
+
+const userLogar = {
+  nome: "admin",
+  senha: "1234",
+  tentativas: 0,
+  bloqueado: false,
+};
+
+function logarUser() {
+  while (userLogar.tentativas < 3) {
+    userLogar.tentativas++;
+
+    const senha = prompt("QUAL A SENHA: ");
+
+    if (senha !== userLogar.senha) {
+      console.log("Senha inválida");
+      continue;
+    } else {
+      return { sucesso: true, mensagem: "LOGADO" };
+    }
+  }
+  userLogar.bloqueado = true;
+  return {
+    sucesso: false,
+    mensagem: "BLOQUEADO",
+  };
+}
+
+console.log(logarUser().mensagem);
+console.log(userLogar);
