@@ -304,3 +304,60 @@ function logarUser() {
 
 console.log(logarUser().mensagem);
 console.log(userLogar);
+
+console.log("EXERCICIO 12");
+
+const listaDuplicada = ["Ana", "Carlos", "Ana", "João"];
+
+const listaCorreta = [...new Set(listaDuplicada)];
+
+const listaFilter = listaDuplicada.filter((obj, i) => {
+  return listaDuplicada.indexOf(obj) === i;
+});
+console.log(listaCorreta);
+console.log(listaFilter);
+
+console.log("EXERCICO 13");
+
+const listaObj = [{ nome: "Ana" }, { nome: "Carlos" }, { nome: "Ana" }];
+
+const mapNome = new Map(listaObj.map((u) => [u.nome, u]));
+const listaObjCorreta = [...mapNome.values()];
+console.log(listaObjCorreta);
+
+console.log("EXERCICIO 13");
+
+const produtosNovos = [
+  { nome: "Teclado", preco: 1000 },
+  { nome: "Mouse", preco: 50 },
+  { nome: "Monitor", preco: 900 },
+];
+
+const maisCaro = produtosNovos.reduce((maior, atual) => {
+  if (atual.preco > maior.preco) {
+    return atual;
+  }
+  return maior;
+});
+
+console.log(maisCaro);
+
+console.log("EXERCICIO 14");
+
+const dados = {
+  nome: "Carlos",
+  isAdmin: true,
+};
+
+const newDados = {
+  nome: "CarlosAdmin",
+};
+function atualizaDadosNovos() {
+  const dadosAtualizar = {
+    nome: newDados.nome,
+  };
+
+  return { ...dados, ...dadosAtualizar };
+}
+
+console.log(atualizaDadosNovos());
